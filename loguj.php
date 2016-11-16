@@ -65,7 +65,7 @@ if(isset($_POST['logowanie'])){
 			$_SESSION["ChatZalogowany"]=true;
 			$_SESSION["ChatNick"]=$mysqldan['login'];
 			$_SESSION["ChatIdUser"]=$mysqldan['id'];
-			header('Refresh: 2; url=index.php');
+			header('Refresh: 1; url=index.php');
 		}
 	}else{
 		SetKomunikat("danger","Niestety błędne dane :(");
