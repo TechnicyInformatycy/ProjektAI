@@ -135,24 +135,45 @@ if(isset($_GET["action"])){
 						$danewiad = mysqli_query($MYSQLLINK,"SELECT idusera,wiadomosc,data FROM chat_message");	
 						while($wiad = mysqli_fetch_assoc($danewiad)){
 							$user = mysqli_fetch_assoc(mysqli_query($MYSQLLINK,"SELECT login,avatar FROM chat_account WHERE id='".$wiad["idusera"]."'"));
-							echo '
-						<li class="media">
-                            <div class="media-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object img-circle " width="50px" height="50px" src="'.$user["avatar"].'">
-                                    </a>
-                                    <div class="media-body">
-                                        '.$wiad["wiadomosc"] .'
-                                        <br>
-                                       <small class="text-muted">'.$user["login"].' |'.$wiad["data"] .'</small>
-                                        <hr>
-                                    </div>
-                                </div>
-        
-                            </div>
-                        </li>	
-							';
+							if($_SESSION["ChatNick"]==$user['login']){
+								echo '
+									<li class="media">
+										<div class="media-body">
+											<div class="media">
+												<a class="pull-right" href="#">
+													<img class="media-object img-circle " width="50px" height="50px" src="'.$user["avatar"].'">
+												</a>
+												<div class="media-body">
+													'.$wiad["wiadomosc"] .'
+													<br>
+												   <small class="text-muted">'.$user["login"].' |'.$wiad["data"] .'</small>
+													<hr>
+												</div>
+											</div>
+					
+										</div>
+									</li>	
+								';									
+							}else{
+								echo '
+									<li class="media">
+										<div class="media-body">
+											<div class="media">
+												<a class="pull-left" href="#">
+													<img class="media-object img-circle " width="50px" height="50px" src="'.$user["avatar"].'">
+												</a>
+												<div class="media-body">
+													'.$wiad["wiadomosc"] .'
+													<br>
+												   <small class="text-muted">'.$user["login"].' |'.$wiad["data"] .'</small>
+													<hr>
+												</div>
+											</div>
+					
+										</div>
+									</li>	
+								';								
+							}
 						}
 						?>
                     </ul>  
