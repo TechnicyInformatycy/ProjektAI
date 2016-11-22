@@ -53,6 +53,20 @@ if(isset($_GET["action"])){
 	
 <style type="text/css">
 
+.btn2{
+  width: 18vh;
+  height: 5vh;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 2vh;
+  line-height: 1.428571429;
+  border-radius: 10px;
+}
+
+
+
+
+
 body {
   padding-top: 0;
   font-size: 12px;
@@ -125,6 +139,7 @@ small, .small {
   top: 27px;
   font-size: 10px;
   padding: 3px 5px;
+  
 }
 
 .chat-message {
@@ -134,10 +149,15 @@ small, .small {
 .chat {
     list-style: none;
     margin: 0;
+	overflow:scroll;
+	height:75vh;
+	width:100vh;
+	padding-right:2vh;
 }
 
 .chat-message{
-    background: #f9f9f9;  
+    background: #f9f9f9; 
+	
 }
 
 .chat li img {
@@ -154,6 +174,7 @@ img {
 
 .chat-body {
   padding-bottom: 20px;
+  
 }
 
 .chat li.left .chat-body {
@@ -223,6 +244,7 @@ img {
 .chat li.right .chat-body {
   margin-right: 70px;
   background-color: #fff;
+  
 }
 
 .chat-box {
@@ -257,100 +279,39 @@ a:hover, a:active, a:focus {
     <div class="row">
 		<div class="col-md-4 bg-white ">
             <div class=" row border-bottom padding-sm" style="height: 40px;">
-            	Member
+            	
             </div>
             
             <!-- =============================================================== -->
             <!-- member list -->
             <ul class="friend-list">
-                <li class="active bounceInDown">
-                	<a href="#" class="clearfix">
-                		<img src="http://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                <li class="active bounceInDown">	
                 		<div class="friend-name">	
-                			<strong>John Doe</strong>
+                		
+							<font size="5.5px">Dane konta: </font><br><br>
+							<strong>Nazwa użytkownika:  <?php echo $_SESSION["ChatNick"]; ?> </strong><br>
+							<strong>Mail:  <?php 
+							$query = mysqli_fetch_assoc(mysqli_query($MYSQLLINK,"SELECT email FROM chat_account WHERE login='".$_SESSION["ChatNick"]."';"));
+							echo($query['email']);
+							?> </strong><br><br>
+							<strong><?php 	echo $dnitygodnia[getdate()['wday']].", ".$data."<br>"."Godzina: ".$czas; ?></strong>
+							
+							
                 		</div>
-                		<div class="last-message text-muted">Hello, Are you there?</div>
-                		<small class="time text-muted">Just now</small>
-                		<small class="chat-alert label label-danger">1</small>
-                	</a>
-                </li>
+
+
+                </li><br><br>
                 <li>
-                	<a href="#" class="clearfix">
-                		<img src="http://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
-                		<div class="friend-name">	
-                			<strong>Jane Doe</strong>
+                	<br><br><br>
+                		<div class="friend-name">
+                		<a href="index.php?action=logout"><button type="button" class="btn btn-danger btn2">Wyloguj się</button><br><br></a>
+						<button type="button" class="btn btn-warning btn2">Zresetuj hasło</button><br>
+							
+							
                 		</div>
-                		<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                		<small class="time text-muted">5 mins ago</small>
-                	<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
-                	</a>
-                </li> 
-                <li>
-                	<a href="#" class="clearfix">
-                		<img src="http://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
-                		<div class="friend-name">	
-                			<strong>Kate</strong>
-                		</div>
-                		<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                		<small class="time text-muted">Yesterday</small>
-                		<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                	</a>
-                </li>  
-                <li>
-                	<a href="#" class="clearfix">
-                		<img src="http://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                		<div class="friend-name">	
-                			<strong>Kate</strong>
-                		</div>
-                		<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                		<small class="time text-muted">Yesterday</small>
-                		<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                	</a>
-                </li>     
-                <li>
-                	<a href="#" class="clearfix">
-                		<img src="http://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
-                		<div class="friend-name">	
-                			<strong>Kate</strong>
-                		</div>
-                		<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                		<small class="time text-muted">Yesterday</small>
-                		<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                	</a>
-                </li>        
-                <li>
-                	<a href="#" class="clearfix">
-                		<img src="http://bootdey.com/img/Content/user_6.jpg" alt="" class="img-circle">
-                		<div class="friend-name">	
-                			<strong>Kate</strong>
-                		</div>
-                		<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                		<small class="time text-muted">Yesterday</small>
-                		<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                	</a>
-                </li>          
-                <li>
-                	<a href="#" class="clearfix">
-                		<img src="http://bootdey.com/img/Content/user_5.jpg" alt="" class="img-circle">
-                		<div class="friend-name">	
-                			<strong>Kate</strong>
-                		</div>
-                		<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                		<small class="time text-muted">Yesterday</small>
-                		<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>
-                	</a>
-                </li>
-                <li>
-                    <a href="#" class="clearfix">
-                		<img src="http://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
-                		<div class="friend-name">	
-                			<strong>Jane Doe</strong>
-                		</div>
-                		<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>
-                		<small class="time text-muted">5 mins ago</small>
-                	<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>
-                	</a>
-                </li>                 
+   
+                	
+                </li>         
             </ul>
 		</div>
         
@@ -405,9 +366,9 @@ a:hover, a:active, a:focus {
             <div class="chat-box bg-white">
             	<div class="input-group">
 				    <span class="input-group-btn">
-            			<button class="btn btn-success no-rounded" type="button">Wyślij</button>
+            			<button class="btn btn-success no-rounded" type="button" onclick="SenWiad()">Wyślij</button>
             		</span>
-            		<input class="form-control border no-shadow no-rounded" placeholder="Twoja wiadomość">
+            		<input class="form-control border no-shadow no-rounded" id="imputwiad" name="imputwiad" placeholder="Twoja wiadomość">
             	</div><!-- /input-group -->	
             </div>            
 		</div>        
@@ -417,6 +378,24 @@ a:hover, a:active, a:focus {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+	<script>
+	function SenWiad(){
+		var wiadomosc = $("#imputwiad").val();
+			$.post(
+				"sendwiad.php",
+				{
+					wiad: wiadomosc
+				},
+				function(data){
+					if(data="1"){
+						//odswiez diva
+					}else{
+						alert(data);
+					}
+				}
+			);
+	}
+	</script>
   </body>
 </html>
 
