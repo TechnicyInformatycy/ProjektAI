@@ -2,8 +2,10 @@
 require("include/mysql.php");
 require("config/config.php");
 session_start();
-if(isset($_SESSION["ChatZalogowany"])){
-	header("Location: index.php");
+if(!isset($_GET["data"])){
+	if(isset($_SESSION["ChatZalogowany"])){
+		header("Location: index.php");
+	}
 }
 if(isset($_GET["data"])){
 	$zminck=base64_decode ($_GET["data"]);
@@ -90,8 +92,9 @@ if(isset($_POST['recovepass'])){
 	$logincheck =mysqli_num_rows(mysqli_query($MYSQLLINK,"SELECT login FROM chat_account WHERE email='".$email."';"));
 	$login = mysqli_fetch_assoc(mysqli_query($MYSQLLINK,"SELECT login FROM chat_account WHERE email='".$email."';"));
 	if($logincheck>0){
-		mail($email, "Chat przypomninie HASŁA", base64_encode ($login['login']));
-		SetKomunikat("success","Wysłano Email z przypomnieniem hasła");
+		mail($email, "Chat przypomninie HASŁA", base64_encode ($login['login']));	
+			$zmiena=base64_encode ($login['login']);
+		SetKomunikat("success","Wysłano Email z przypomnieniem hasła.Wersja dla sorki:<a style='color:black;'href='passrecovery.php?data=$zmiena'>PRZEKIEROWANIE</a>");
 	}else{
 		SetKomunikat("danger","Niestety takiego emaila nie ma w naszej bazie danych");
 	}

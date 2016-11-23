@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
 Zaplanowane Sesje:
 ChatZalogowany - true,false  - czy zalogowany
@@ -25,7 +25,6 @@ if(isset($_GET["action"])){
 		header("Location: loguj.php");
 	}
 }
-$DIID=0;
 ?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -53,7 +52,6 @@ $DIID=0;
     <![endif]-->
 	
 <style type="text/css">
-
 .btn2{
   width: 18vh;
   height: 5vh;
@@ -63,11 +61,6 @@ $DIID=0;
   line-height: 1.428571429;
   border-radius: 10px;
 }
-
-
-
-
-
 body {
   padding-top: 0;
   font-size: 12px;
@@ -76,27 +69,22 @@ body {
   font-family: 'Open Sans',sans-serif;
   margin-top:20px;
 }
-
 .bg-white {
   background-color: #fff;
 }
-
 .friend-list {
   list-style: none;
 margin-left: -40px;
 }
-
 .friend-list li {
   border-bottom: 1px solid #eee;
 }
-
 .friend-list li a img {
   float: left;
   width: 45px;
   height: 45px;
   margin-right: 0px;
 }
-
  .friend-list li a {
   position: relative;
   display: block;
@@ -107,33 +95,27 @@ margin-left: -40px;
   -ms-transition: all .2s ease;
   -o-transition: all .2s ease;
 }
-
 .friend-list li.active a {
   background-color: #f1f5fc;
 }
-
 .friend-list li a .friend-name, 
 .friend-list li a .friend-name:hover {
   color: #777;
 }
-
 .friend-list li a .last-message {
   width: 65%;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
 .friend-list li a .time {
   position: absolute;
   top: 10px;
   right: 8px;
 }
-
 small, .small {
   font-size: 85%;
 }
-
 .friend-list li a .chat-alert {
   position: absolute;
   right: 8px;
@@ -142,11 +124,9 @@ small, .small {
   padding: 3px 5px;
   
 }
-
 .chat-message {
   padding: 60px 20px 115px;
 }
-
 .chat {
     list-style: none;
     margin: 0;
@@ -155,12 +135,10 @@ small, .small {
 	width:100vh;
 	padding-right:2vh;
 }
-
 .chat-message{
     background: #f9f9f9; 
 	
 }
-
 .chat li img {
   width: 45px;
   height: 45px;
@@ -168,21 +146,17 @@ small, .small {
   -moz-border-radius: 50em;
   -webkit-border-radius: 50em;
 }
-
 img {
   max-width: 100%;
 }
-
 .chat-body {
   padding-bottom: 20px;
   
 }
-
 .chat li.left .chat-body {
   margin-left: 70px;
   background-color: #fff;
 }
-
 .chat li .chat-body {
   position: relative;
   font-size: 11px;
@@ -192,16 +166,13 @@ img {
   -moz-box-shadow: 0 1px 1px rgba(0,0,0,.05);
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
-
 .chat li .chat-body .header {
   padding-bottom: 5px;
   border-bottom: 1px solid #f1f5fc;
 }
-
 .chat li .chat-body p {
   margin: 0;
 }
-
 .chat li.left .chat-body:before {
   position: absolute;
   top: 10px;
@@ -219,7 +190,6 @@ img {
   -ms-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
 }
-
 .chat li.right .chat-body:before {
   position: absolute;
   top: 10px;
@@ -237,17 +207,14 @@ img {
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
 }
-
 .chat li {
   margin: 15px 0;
 }
-
 .chat li.right .chat-body {
   margin-right: 70px;
   background-color: #fff;
   
 }
-
 .chat-box {
   position: fixed;
   bottom: 0;
@@ -261,11 +228,9 @@ img {
   -ms-transition: all .5s ease;
   -o-transition: all .5s ease;
 }
-
 .primary-font {
   color: #3c8dbc;
 }
-
 a:hover, a:active, a:focus {
   text-decoration: none;
   outline: 0;
@@ -275,93 +240,50 @@ a:hover, a:active, a:focus {
   </head>
   <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container bootstrap snippet">
-    <div class="row">
-		<div class="col-md-4 bg-white ">
-            <div class=" row border-bottom padding-sm" style="height: 40px;">
-            	
-            </div>
-            
-            <!-- =============================================================== -->
-            <!-- member list -->
-            <ul class="friend-list">
-                <li class="active bounceInDown">	
-                		<div class="friend-name">	
-                		
-							<font size="5.5px">Dane konta: </font><br><br>
-							<strong>Nazwa użytkownika:  <?php echo $_SESSION["ChatNick"]; ?> </strong><br>
-							<strong>Mail:  <?php 
-							$query = mysqli_fetch_assoc(mysqli_query($MYSQLLINK,"SELECT email FROM chat_account WHERE login='".$_SESSION["ChatNick"]."';"));
-							echo($query['email']);
-							?> </strong><br><br>
-							<strong><?php 	echo $dnitygodnia[getdate()['wday']].", ".$data."<br>"."Godzina: ".$czas; ?></strong>
-							
-							
-                		</div>
-
-
-                </li><br><br>
-                <li>
-                	<br><br><br>
-                		<div class="friend-name">
-                		<a href="index.php?action=logout"><button type="button" class="btn btn-danger btn2">Wyloguj się</button></a>
-						<a href="passrecovery.php?data=<?php echo(base64_encode($_SESSION["ChatNick"]))?>"><button type="button" class="btn btn-warning btn2">Zresetuj hasło</button><br></a>
-                		</div>
-   
-                	
-                </li>         
-            </ul>
-		</div>
-        
-        <!--=========================================================-->
-        <!-- selected chat -->
-    	<div class="col-md-8 bg-white ">
-            <div class="chat-message">
                 <ul class="chat">
                    <?php
-					include("chatgenerator.php");
-					?>                   
-                </ul>
-				<div id="idmysql"><?php echo ($DIID)?></div>
-            </div>
-            <div class="chat-box bg-white">
-            	<div class="input-group">
-				    <span class="input-group-btn">
-            			<button class="btn btn-success no-rounded" type="button" onclick="SenWiad()">Wyślij</button>
-            		</span>
-            		<input class="form-control border no-shadow no-rounded" id="imputwiad" name="imputwiad" placeholder="Twoja wiadomość">
-            	</div><!-- /input-group -->	
-            </div>            
-		</div>        
-	</div>
-</div>	
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+						$danewiad = mysqli_query($MYSQLLINK,"SELECT idusera,wiadomosc,data FROM chat_message");	
+						while($wiad = mysqli_fetch_assoc($danewiad)){
+							$user = mysqli_fetch_assoc(mysqli_query($MYSQLLINK,"SELECT login,avatar FROM chat_account WHERE id='".$wiad["idusera"]."'"));
+							if($_SESSION["ChatNick"]==$user['login']){
+								echo '
+								<li class="right clearfix">
+									<span class="chat-img pull-right">
+										<img src="'.$user["avatar"].'" alt="User Avatar">
+									</span>
+									<div class="chat-body clearfix">
+										<div class="header">
+											<strong class="primary-font">'.$user["login"].'</strong>
+											<small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'.$wiad["data"].'</small>
+										</div>
+										<p>
+											'.$wiad["wiadomosc"].' 
+										</p>
+									</div>
+								</li>  	
+								';
+							}else{
+								echo '
+								<li class="left clearfix">
+									<span class="chat-img pull-left">
+										<img src="'.$user["avatar"].'" alt="User Avatar">
+									</span>
+									<div class="chat-body clearfix">
+										<div class="header">
+											<strong class="primary-font">'.$user["login"].'</strong>
+											<small class="pull-right text-muted"><i class="fa fa-clock-o"></i>'.$wiad["data"].'</small>
+										</div>
+										<p>
+											'.$wiad["wiadomosc"].' 
+										</p>
+									</div>
+								</li>  	
+								';
+							}
+						}
+						?>                         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-	<script>
-	window.setInterval(DIvUpdater, 3000);
-	function DIvUpdater(){
-		$(".chat-message").load("chatgenerator.php");
-	}
-	function SenWiad(){
-		var wiadomosc = $("#imputwiad").val();
-			$.post(
-				"sendwiad.php",
-				{
-					wiad: wiadomosc
-				},
-				function(data){
-					if(data="1"){
-						$("#imputwiad").val("");
-						$(".chat-message").load("chatgenerator.php");
-					}else{
-						alert(data);
-					}
-				}
-			);
-	}
-	</script>
   </body>
 </html>
-
