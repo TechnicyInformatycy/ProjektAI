@@ -371,7 +371,7 @@ a:hover, a:active, a:focus {
 	
 
 
-$('#div1').scrollTop($('#div1')[0].scrollHeight);
+$('#div1').scrollTop($('.chat')[0].scrollHeight);
 
 	
 
